@@ -12,9 +12,9 @@ my $nomatch = 0;
 
 while(<$f>) {
     chomp;
-    if(m/^[\d]{4,4}.*?,(.*?),(.*?),(\d+),(\d+),.*$/) {
-        if($4 > $3) {
-            printf("%s (%d) - (%d) %s\n", $1, $3, $4, $2);
+    if(m/^([\d]{4,4})\-.*?,(.*?),(.*?),(\d+),(\d+),.*$/) {
+        if($5 > $4) {
+            printf("%s: %s (%d) - (%d) %s\n", $1, $2, $4, $5, $3);
             $match++;
         }else{
             $nomatch++;
@@ -28,4 +28,4 @@ while(<$f>) {
 
 close($f);
 
-printf("Se ecnontraron: \n - %d matches\n - %d no matches\n", $match, $nomatch);
+printf("Se ecnontraron: \n - %d matches\n - %d no matches\ntardo %d segundos\n", $match, $nomatch, time() - $t);
